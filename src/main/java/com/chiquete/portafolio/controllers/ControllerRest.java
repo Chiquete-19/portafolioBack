@@ -1,6 +1,9 @@
 package com.chiquete.portafolio.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.chiquete.portafolio.dtoClasses.MailDto;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -9,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ControllerRest {
 
     @PostMapping("/sendMail")
-    public void sendMail(@RequestBody RequestBody request) {
+    public void sendMail(@RequestBody MailDto mail) {
         
     }
-    
 }
