@@ -16,11 +16,11 @@ public class EmailService {
 
     public void sendEmail(String to, String subject, String content) throws Exception {
 
-        Email from = new Email("tuemail@tudominio.com");
+        Email from = new Email("lacuentadefer2003@gmail.com");
         Email toEmail = new Email(to);
 
         Content body = new Content("text/html", content);
-        Mail mail = new Mail(from, subject, toEmail, body);
+        Mail mail = new Mail(toEmail, subject, from, body);
 
         SendGrid sg = new SendGrid(System.getenv(API_KEY));
         Request request = new Request();
