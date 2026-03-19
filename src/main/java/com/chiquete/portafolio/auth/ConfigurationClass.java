@@ -17,7 +17,7 @@ import org.springframework.web.filter.CorsFilter;
 public class ConfigurationClass {
 
     @Value("${app.frontend.url}")
-    private String frontendUrl;
+    private String FRONDEND_URL;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -35,7 +35,7 @@ public class ConfigurationClass {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedOrigins(List.of(FRONDEND_URL));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
@@ -46,20 +46,4 @@ public class ConfigurationClass {
         return source;
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-
-        config.setAllowedOrigins(List.of(frontendUrl));
-
-        config.setAllowedMethods(List.of("POST"));
-
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-
-        return new CorsFilter(source);
-    }
 }
