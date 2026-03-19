@@ -1,5 +1,6 @@
 package com.chiquete.portafolio.Mail;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sendgrid.*;
@@ -10,6 +11,9 @@ import com.sendgrid.helpers.mail.objects.Email;
 @Service
 public class EmailService {
 
+    @Value("${app.api.key}")
+    private String API_KEY;
+
     public void sendEmail(String to, String subject, String content) throws Exception {
 
         Email from = new Email("tuemail@tudominio.com");
@@ -18,7 +22,7 @@ public class EmailService {
         Content body = new Content("text/html", content);
         Mail mail = new Mail(from, subject, toEmail, body);
 
-        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+        SendGrid sg = new SendGrid(System.getenv(API_KEY));
         Request request = new Request();
 
         request.setMethod(Method.POST);
