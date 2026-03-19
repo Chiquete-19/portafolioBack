@@ -21,7 +21,9 @@ public class ControllerRest {
     public ResponseEntity<?> sendMail(@RequestBody MailDto mail) throws Exception {
         
         try {
-            email.sendEmail(mail.getFrom(), "Contacto", mail.getMessage());
+            String from=mail.getFrom();
+            String mensaje= mail.getMessage();
+            email.sendEmail(from,mensaje);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace(); // 👈 AGREGA ESTO
